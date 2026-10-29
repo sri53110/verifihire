@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d1c">
+  <meta name="description" content="AI-assisted job posting risk screening using NLP and machine learning.">
+  <title>VerifiHire — Job Risk Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="VerifiHire home">
+      <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 20 6v5.3c0 5-3.4 8.5-8 10.2-4.6-1.7-8-5.2-8-10.2V6l8-3.2Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></span>
+      <span>Verifi<span class="brand-accent">Hire</span></span>
+    </a>
+    <nav class="nav-links"><a href="#how-it-works">How it works</a><a href="#analyzer">Analyzer</a><a href="#safety">Safety guide</a></nav>
+    <div class="top-status"><span class="status-dot"></span><span id="model-status">Checking model</span></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-icon">✳</span> AI-POWERED JOB RISK INTELLIGENCE</div>
+        <h1>Good careers start<br>with <span class="gradient-text">safe choices.</span></h1>
+        <p class="hero-description">Screen suspicious job postings with natural language processing and machine learning. Get a clearer view before you share your time or personal information.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#analyzer">Analyze a job <span>↗</span></a><a class="text-link" href="#how-it-works">Explore the process <span>↓</span></a></div>
+        <div class="trust-row"><span class="trust-icon">✓</span><span>Privacy-minded</span><i></i><span>ML-assisted screening</span><i></i><span>Free to analyze</span></div>
+      </div>
+      <div class="hero-visual" aria-label="Illustration of a job security analysis dashboard">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="shield-illustration"><div class="shield-glow"></div><svg viewBox="0 0 180 205" aria-hidden="true"><path class="shield-outline" d="M90 10 158 36v48c0 49-29 82-68 104C51 166 22 133 22 84V36L90 10Z"/><path class="shield-inner" d="M90 25 145 46v39c0 40-23 67-55 86-32-19-55-46-55-86V46l55-21Z"/><path class="shield-check" d="m62 100 18 18 39-43"/></svg></div>
+        <div class="float-card float-card-top"><span class="mini-icon purple">✳</span><div><b>NLP scan</b><small>Text signals analyzed</small></div><span class="check-badge">✓</span></div>
+        <div class="float-card float-card-bottom"><span class="mini-icon cyan">⌁</span><div><b>Risk insights</b><small>Evidence-led review</small></div><span class="pulse"></span></div>
+        <div class="visual-caption"><span class="caption-line"></span> A smarter first look at every opportunity</div>
+      </div>
+    </section>
+
+    <section class="stats-strip">
+      <div class="stat"><span class="stat-icon violet">⌘</span><div><b>NLP + ML</b><small>Text classification</small></div></div>
+      <div class="stat"><span class="stat-icon blue">◎</span><div><b>Clear signals</b><small>Understand the warning signs</small></div></div>
+      <div class="stat"><span class="stat-icon green">◇</span><div><b>Safer decisions</b><small>Verify before you apply</small></div></div>
+    </section>
+
+    <section class="analyzer-section section" id="analyzer">
+      <div class="section-heading"><div><div class="eyebrow">THE JOB CHECK</div><h2>Look closer before<br><span class="muted-gradient">you leap.</span></h2></div><p>Paste the job details. The model will analyze the text and return a screening result with possible warning signs.</p></div>
+      <div class="workspace">
+        <div class="form-panel">
+          <div class="panel-top"><div><span class="step-label">01 / INPUT</span><h3>Job posting details</h3></div><span class="panel-icon">⌑</span></div>
+          <form id="analyze-form">
+            <label for="job-title">Job title <span>REQUIRED</span></label>
+            <input id="job-title" name="title" maxlength="300" placeholder="e.g. Junior Data Analyst" autocomplete="off">
+            <label for="company-profile">Company profile <span>OPTIONAL</span></label>
+            <textarea id="company-profile" name="company_profile" rows="2" placeholder="Company name, website, and background…"></textarea>
+            <label for="job-description">Job description <span>REQUIRED</span></label>
+            <textarea id="job-description" name="description" rows="7" maxlength="20000" placeholder="Paste the full job description, responsibilities, salary details, application instructions…"></textarea>
+            <div class="input-foot"><span>Do not include private information.</span><span id="char-count">0 / 20,000</span></div>
+            <div class="optional-grid"><div><label for="requirements">Requirements</label><textarea id="requirements" name="requirements" rows="2" placeholder="Skills and experience"></textarea></div><div><label for="benefits">Benefits</label><textarea id="benefits" name="benefits" rows="2" placeholder="Pay, benefits, perks"></textarea></div></div>
+            <div id="form-error" class="form-error" role="alert" hidden></div>
+            <button class="button button-primary analyze-button" id="analyze-button" type="submit"><span class="button-label">Analyze job posting</span><span class="button-arrow">↗</span></button>
+            <p class="form-note"><span>♧</span> Your text is processed by this app's backend and is not saved to a database by this starter project.</p>
+          </form>
+        </div>
+        <div class="result-panel" id="result-panel">
+          <div class="panel-top"><div><span class="step-label">02 / INSIGHTS</span><h3>Screening report</h3></div><span class="live-chip"><span></span> LIVE ANALYSIS</span></div>
+          <div class="empty-state" id="empty-state">
+            <div class="empty-art"><div class="empty-ring ring-one"></div><div class="empty-ring ring-two"></div><div class="empty-center"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6 53 14v15c0 15-9 25-21 30C20 54 11 44 11 29V14L32 6Z"/><path d="m23 31 6 6 13-14"/></svg></div><span class="spark spark-one">✳</span><span class="spark spark-two">✦</span></div>
+            <h4>Your insights will appear here</h4><p>Submit a job posting to see the model's prediction, confidence, and potential warning signs.</p>
+            <div class="empty-checks"><span>✓ Text pattern analysis</span><span>✓ Risk indicator review</span><span>✓ Safety recommendations</span></div>
+          </div>
+          <div id="result-content" hidden>
+            <div class="result-banner" id="result-banner"><span class="result-symbol" id="result-symbol">✓</span><div><span class="result-kicker">MODEL SCREENING RESULT</span><h4 id="result-label">Result</h4><p id="result-explanation"></p></div></div>
+            <div class="risk-block"><div class="risk-head"><div><span class="sub-label">MODEL RISK SCORE</span><div class="risk-number"><strong id="risk-score">—</strong><span>/ 100</span></div></div><div class="risk-tag" id="risk-tag">SCREENING ONLY</div></div><div class="risk-track"><div id="risk-fill"></div></div><div class="risk-scale"><span>Lower model score</span><span>Higher model score</span></div><p class="small-disclaimer">This score is the model's estimated class probability, not a verified probability that the job is a scam.</p></div>
+            <div class="signals-block"><div class="signals-heading"><h5>Potential warning signs</h5><span id="signal-count">0 found</span></div><div id="signal-list" class="signal-list"></div></div>
+            <div class="recommendation"><span class="recommend-icon">✳</span><div><b>Before you apply</b><p id="recommendation-text">Verify the employer through official channels.</p></div></div>
+            <button class="button button-secondary" id="reset-button" type="button">Analyze another job <span>↻</span></button>
+          </div>
+        </div>
+      </div>
+      <p class="legal-note">Important: This tool is an initial screening aid, not a fraud investigation or guarantee. A result can be wrong. Never pay to get a job, and never share passwords or one-time codes with recruiters.</p>
+    </section>
+
+    <section class="section how-section" id="how-it-works">
+      <div class="section-heading"><div><div class="eyebrow">BEHIND THE SCREEN</div><h2>From raw text<br>to <span class="muted-gradient">useful signals.</span></h2></div><p>A straightforward machine-learning pipeline turns job description language into a model prediction.</p></div>
+      <div class="steps-grid">
+        <article class="step-card"><span class="step-number">01</span><span class="step-icon">▤</span><h3>Prepare the text</h3><p>Job title, description, company profile, and other supplied fields are combined into a text sample.</p><div class="step-tag">INPUT DATA</div></article>
+        <article class="step-card"><span class="step-number">02</span><span class="step-icon">⌕</span><h3>Extract language features</h3><p>TF-IDF represents useful words and phrases as numerical features for the classifier.</p><div class="step-tag">NATURAL LANGUAGE PROCESSING</div></article>
+        <article class="step-card"><span class="step-number">03</span><span class="step-icon">✳</span><h3>Classify the posting</h3><p>Logistic Regression learns from labeled examples and predicts a class for the new posting.</p><div class="step-tag">MACHINE LEARNING</div></article>
+        <article class="step-card"><span class="step-number">04</span><span class="step-icon">◈</span><h3>Review the result</h3><p>The report presents the prediction, model score, and text-based warning indicators.</p><div class="step-tag">DECISION SUPPORT</div></article>
+      </div>
+    </section>
+
+    <section class="safety-section" id="safety"><div class="safety-inner"><div class="safety-badge">YOUR CAREER, YOUR CONTROL</div><h2>Trust the opportunity.<br><span class="gradient-text">Verify the details.</span></h2><p>Use the model as one signal among many. A polished job post can still be fraudulent, and a genuine employer can use unusual wording.</p><div class="safety-points"><div><span>01</span><b>Check the official company website and email domain.</b></div><div><span>02</span><b>Never pay registration fees or deposits to secure employment.</b></div><div><span>03</span><b>Never share passwords, OTPs, or banking login details.</b></div></div></div></section>
+  </main>
+  <footer class="footer"><a class="brand" href="#"><span class="brand-mark small-mark">✳</span><span>phish<span class="brand-accent">hire</span></span></a><span>AI-assisted screening for a safer job search.</span><span class="footer-right">Built with Python · NLP · Machine Learning</span></footer>
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</body>
+</html>
